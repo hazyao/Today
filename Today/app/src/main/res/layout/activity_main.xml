@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mainLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/home_background"
+            android:scaleType="fitXY"
+            android:gravity="center_horizontal"
+            android:id="@+id/layout">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:overScrollMode="never">
+            </android.support.v4.view.ViewPager>
+
+            <ImageView
+                android:layout_width="227.74dp"
+                android:layout_height="54dp"
+                android:src="@drawable/habit_list"
+                android:scaleType="fitXY"
+                android:translationZ="5dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="10dp">
+            </ImageView>
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

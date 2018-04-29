@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hazy.today">
+
+    <!-- 获取震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/today_icon"
+        android:label="Today"
+        android:roundIcon="@mipmap/today_icon_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--引导页-->
+        <activity android:name=".GuideActivity"/>
+
+        <!--闹钟服务-->
+        <receiver android:name=".AlarmReceiver">
+            <intent-filter>
+                <action android:name="ELITOR_CLOCK" />
+            </intent-filter>
+        </receiver>
+
+        <!--一像素监听屏幕服务-->
+        <service android:name=".LiveService"
+            android:process=":live_service"/>
+
+        <!--一像素activity-->
+        <activity android:name=".LiveActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnTaskLaunch="false"
+            android:process=":live"
+            android:launchMode="singleInstance"
+            android:theme="@style/LiveActivityStyle"/>
+
+    </application>
+
+</manifest>

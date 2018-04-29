@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:paddingLeft="36dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="#fff"
+                android:id="@+id/titleDetail"/>
+
+            <!--要显示的详细信息-->
+            <com.hazy.today.DetailCalendar
+                android:id="@+id/calendar"
+                android:background="@drawable/detail_bg"
+                android:layout_width="365dp"
+                android:layout_height="365dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:padding="10dp">
+                <Button
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:drawableTop="@mipmap/button_delete"
+                    android:background="@color/transparent"
+                    android:id="@+id/delHabit"
+                    android:layout_weight="1"/>
+                <Button
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:drawableTop="@mipmap/button_done"
+                    android:background="@color/transparent"
+                    android:id="@+id/doneHabit"
+                    android:layout_weight="1"/>
+                <Button
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:drawableTop="@mipmap/button_edit"
+                    android:background="@color/transparent"
+                    android:id="@+id/editHabit"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

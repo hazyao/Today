@@ -1,0 +1,50 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/transparent</item>
+        <item name="android:textColorPrimary">#000</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--详情动画效果-->
+    <style name="DetailAnim">
+        <item name="android:windowEnterAnimation">@animator/detail_show</item>
+        <item name="android:windowExitAnimation">@animator/detail_miss</item>
+    </style>
+
+    <!--对话框动画效果-->
+    <style name="DialogAnim">
+        <item name="android:windowEnterAnimation">@animator/dialog_show</item>
+        <item name="android:windowExitAnimation">@animator/dialog_miss</item>
+    </style>
+
+    <!--对话框全屏-->
+    <style name="HazyDialog" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <!--是否在悬浮Activity之上 这个属性很坑人 -->
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <!--timePicker字体颜色设置-->
+    <style name="timePicker" parent="android:Theme.Material.Light">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:layout_width">400dp</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+    <style name="LiveActivityStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+</resources>

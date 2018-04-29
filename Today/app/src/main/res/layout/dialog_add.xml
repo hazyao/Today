@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+<LinearLayout
+    android:layout_width="350dp"
+    android:layout_height="180dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <EditText
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/habitName"
+        android:hint="请输入习惯标题"
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:maxLength="12"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="提醒"
+            android:textSize="16sp"
+            android:gravity="center"/>
+        <com.hazy.today.MySpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/remind"
+            android:spinnerMode="dropdown">
+        </com.hazy.today.MySpinner>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:id="@+id/ifRepeat">
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/repeatText"
+            android:text="重复"
+            android:textSize="16sp"
+            android:gravity="center"/>
+        <com.hazy.today.MySpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/repeat"
+            android:spinnerMode="dropdown">
+        </com.hazy.today.MySpinner>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
