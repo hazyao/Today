@@ -78,7 +78,7 @@ public class GuideActivity extends AppCompatActivity implements ViewPager.OnPage
     private void initViewPager() {
         vp = (ViewPager) findViewById(R.id.guide_vp);
         //实例化图片资源
-        imageIdArray = new int[]{R.drawable.page_first, R.drawable.page_second, R.drawable.page_third};
+        imageIdArray = new int[]{R.mipmap.page_first, R.mipmap.page_second, R.mipmap.page_third};
         viewList = new ArrayList<>();
         //获取一个Layout参数，设置为全屏
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(

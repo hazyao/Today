@@ -21,26 +21,85 @@
             android:orientation="vertical"
             android:background="@drawable/home_background"
             android:scaleType="fitXY"
-            android:gravity="center_horizontal"
             android:id="@+id/layout">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:overScrollMode="never">
-            </android.support.v4.view.ViewPager>
-
-            <ImageView
-                android:layout_width="227.74dp"
-                android:layout_height="54dp"
-                android:src="@drawable/habit_list"
-                android:scaleType="fitXY"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today"
+                    android:textStyle="bold"
+                    android:textColor="#E1FFFF"
+                    android:textSize="40sp"
+                    android:layout_gravity="left"
+                    android:paddingLeft="26dp"
+                    android:translationZ="5dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="10dp"/>
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="210dp"
+                    android:layout_marginTop="6dp"
+                    android:id="@+id/user"
+                    android:background="@drawable/user"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="We become what we repeatedly do."
                 android:translationZ="5dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="10dp">
-            </ImageView>
+                android:layout_gravity="left"
+                android:paddingLeft="26dp"
+                android:textColor="#E1FFFF"
+                android:textSize="15sp"
+                android:textStyle="italic"
+                android:layout_marginBottom="120dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/menu"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:text="设置"
+                    android:onClick="Settings"
+                    android:textStyle="bold"
+                    android:textColor="#FFF">
+                </Button>
+                <Button
+                    android:id="@+id/addHabit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:onClick="addHabit"
+                    android:text="添加"
+                    android:textColor="#FFF"
+                    android:textStyle="bold"></Button>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:text="关于"
+                    android:onClick="About"
+                    android:textStyle="bold"
+                    android:textColor="#FFF">
+                </Button>
+            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

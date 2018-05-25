@@ -16,6 +16,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Vibrator;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -43,16 +45,15 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private LinearLayout layout,mainLayout;
+    private LinearLayout layout,menu,mainLayout;
+    private Button user;
     private Vibrator vibrator;
-    private ViewPager viewPager;
     private ImageView container;
     private Dialog dialog;
     private MySpinner repeat,remind;//重复和提醒Spinner
     private EditText habitName;//添加对话框输入习惯标题
     private TextView repeatText;//重复选项的提示
     private DataBase database;
-    private List<View> viewList;
     private ArrayList<Thing> list=new ArrayList<>();//接收数据库数据的动态数组
     public static Thing onTouchHabit;
     public static boolean setup_shock;
@@ -71,8 +72,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*状态栏透明*/
+        Window statusBarBefore = getWindow();
+        statusBarBefore.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        statusBarBefore.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        statusBarBefore.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_main);
-        initView();
+    initView();
         load();
     }
 
@@ -91,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
 
-
         /*获取手机震动服务  */
         vibrator=(Vibrator)getApplication().getSystemService(Service.VIBRATOR_SERVICE);
         //vibrator.vibrate(new long[]{0,100},-1);
@@ -99,9 +105,32 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db=(SQLiteDatabase) my.getWritableDatabase();
         database=new DataBase();
         database.setDb(db);
-
+        menu = findViewById(R.id.menu);
         layout = findViewById(R.id.layout);
         layout.setVisibility(View.VISIBLE);
+        layout.setOnTouchListener(new OnDoubleClickListener(new OnDoubleClickListener.DoubleClickCallback() {
+            boolean menuVisibility = false;
+            @Override
+            public void onDoubleClick() {
+                if (menuVisibility == false){
+                    Animation alphaAnimation = new AlphaAnimation(0f,1f);
+                    alphaAnimation.setDuration(500);
+                    menu.startAnimation(alphaAnimation);
+                    menu.setVisibility(View.VISIBLE);
+                    menuVisibility = true;
+                    }else {
+                    menu.setVisibility(View.GONE);
+                    menuVisibility = false;
+                }
+            }
+        }));
+        user  = findViewById(R.id.user);
+        user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userLogin();
+            }
+        });
         container = findViewById(R.id.container);
         container.setVisibility(View.GONE);
         mainLayout = findViewById(R.id.mainLayout);
@@ -118,20 +147,6 @@ public class MainActivity extends AppCompatActivity {
         eit_x_max=width*0.833;
         y_min=height*0.766;
         y_max=height*0.828;
-
-        viewList = new ArrayList<>();
-        /*通过view对象作为ViewPager数据源*/
-        View view1 = View.inflate(this,R.layout.view_pager_first,null);
-        View view2 = View.inflate(this,R.layout.view_pager_second,null);
-        viewList.add(view1);
-        viewList.add(view2);
-        viewPager = findViewById(R.id.viewpager);
-        /*创建PagerAdapter适配器*/
-        MyPagerAdapter pagerAdapter = new MyPagerAdapter(viewList);
-        /*设置页面切换过渡动画*/
-        viewPager.setPageTransformer(true, new DepthPageTransformer());
-        /*ViewPager加载适配器*/
-        viewPager.setAdapter(pagerAdapter);
 
         //判断是否是第一次打开APP，是则打开引导页
         //使用shared存放用户设置的数据
@@ -173,12 +188,13 @@ public class MainActivity extends AppCompatActivity {
             all.getText().setText(t.getName());
             all.getBut().setText(database.count(t.getId())+" 天");
             all.setBackgroundResource(R.drawable.text_frame);
-            all.setElevation(5f);
+            all.setAlpha(0.8f);
+            all.setTranslationZ(10f);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(10,25,10,15);
+            layoutParams.setMargins(65,25,65,25);
             all.setLayoutParams(layoutParams);
             /*习惯加载动画*/
-            Animation alphaAnimation = new AlphaAnimation(0f,1f);
+            Animation alphaAnimation = new AlphaAnimation(0f,0.8f);
             alphaAnimation.setDuration(500);
             all.startAnimation(alphaAnimation);
             layout.addView(all);
@@ -308,12 +324,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 all.getText().setText(t.getName());
                 all.setBackgroundResource(R.drawable.text_frame);
-                all.setElevation(5f);
+                all.setTranslationZ(10f);
+                all.setAlpha(0.8f);
                 //设置testView大小和Margin
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                layoutParams.setMargins(10, 25, 10, 15);
+                layoutParams.setMargins(65, 25, 65, 25);
                 all.setLayoutParams(layoutParams);
-                Animation alphaAnimation = new AlphaAnimation(0f,1f);
+                Animation alphaAnimation = new AlphaAnimation(0f,0.8f);
                 alphaAnimation.setDuration(500);
                 all.startAnimation(alphaAnimation);
                 layout.addView(all);
@@ -380,7 +397,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         //选择提醒的方式，重复是每天，或者自定义.监听spinner
         repeat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -392,7 +408,6 @@ public class MainActivity extends AppCompatActivity {
                     repeat.setSelection(0);
                     return;
                 }
-
                 //判断为打开提醒
                 if (i==0)//每天提醒
                 {
@@ -460,6 +475,18 @@ public class MainActivity extends AppCompatActivity {
         builder.show();//显示Dialog对话框
     }
 
+    /*用户登录*/
+    private void userLogin(){
+        Dialog builder = new Dialog(this,R.style.HazyDialog);
+        final View set = getLayoutInflater().inflate(R.layout.dialog_userlogin,null);
+        builder.setContentView(set);//设置对话提示框
+        WindowManager.LayoutParams params = builder.getWindow().getAttributes();
+        params.dimAmount = 0.5f;  //设置activity的亮度的dimAmount在0.0f和1.0f之间
+        builder.getWindow().setWindowAnimations(R.style.DetailAnim);   //设置dialog的显示动画
+        builder.setCanceledOnTouchOutside(true);
+        builder.show();
+    }
+
     /*打开设置窗口*/
     public void Settings(View view) {
         //定义对话框
@@ -524,12 +551,6 @@ public class MainActivity extends AppCompatActivity {
                     //hazy
                     screenShot();
                     showDetail(onTouchHabit.getName());
-                    /*状态栏透明*/
-                    Window statusBarBefore = getWindow();
-                    statusBarBefore.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                    statusBarBefore.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-                    statusBarBefore.setStatusBarColor(Color.TRANSPARENT);
                     break;
                 case MotionEvent.ACTION_MOVE:
                     double x_move=event.getRawX();
@@ -621,9 +642,9 @@ public class MainActivity extends AppCompatActivity {
         container.setVisibility(View.GONE);
         mainLayout.setVisibility(View.VISIBLE);
         dialog.dismiss();
-        //状态栏半透明
+        /*//状态栏半透明
         Window statusBarAfter = getWindow();
-        statusBarAfter.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        statusBarAfter.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);*/
     }
 
     /*截屏并传给RenderScript*/
