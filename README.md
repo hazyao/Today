@@ -7,7 +7,7 @@ Updated on May 22, 2018.
 <br/>
 UI changed, login function is building...
 <div align=left>
-<img width="360" height="640" src="https://github.com/hazyao/Today/raw/master/Demo/demo03.jpg"/>/t
+<img width="360" height="640" src="https://github.com/hazyao/Today/raw/master/Demo/demo03.jpg"/>  
 <img width="360" height="640" src="https://github.com/hazyao/Today/raw/master/Demo/demo04.jpg"/>
 </div>
 </br>
@@ -16,6 +16,6 @@ UI changed, login function is building...
 ## Version 1.0
 Updated on April 1, 2018.
 <div align=left>
-<img width="360" height="640" src="https://github.com/hazyao/Today/raw/master/Demo/demo01.jpg"/>/t
+<img width="360" height="640" src="https://github.com/hazyao/Today/raw/master/Demo/demo01.jpg"/>  
 <img width="360" height="640" src="https://github.com/hazyao/Today/raw/master/Demo/demo02.jpg"/>
 </div>
