@@ -1,5 +1,5 @@
 # Today
-an Android app for building good habits</br>
+This is an Android app to help people form good habits</br>
 Written in April,2018
 ## Version 1.1
 Update May,2018 <br/>
