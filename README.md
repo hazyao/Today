@@ -2,7 +2,7 @@
 This is an Android app to help people form good habits
 </br>
 
-## Version 1.2
+## Version 1.1
 Updated on May 22, 2018.
 <br/>
 UI changed, login function is building...
